@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">XingLeFly</string>
+    <string name="picture">美图</string>
+    <string name="shoot">摄影</string>
+    <string name="skill">技术杂谈</string>
+    <string name="page_with_number">第%s页</string>
+</resources>
