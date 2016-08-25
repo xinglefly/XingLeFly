@@ -1,4 +1,4 @@
-package com.xinglefly.module.map;
+package com.xinglefly.module.picture;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.ItemListAdapter;
-import com.xinglefly.model.MapItem;
+import com.xinglefly.model.PictureItem;
 import com.xinglefly.network.Network;
 import com.xinglefly.util.GankBeautyResultToItemsMapper;
 import com.xinglefly.util.LogUtil;
@@ -33,7 +32,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class MapFragment extends BaseFragment {
+public class PictureFragment extends BaseFragment {
 
     @BindView(R.id.tv_page) TextView tvPage;
     @BindView(R.id.btn_previous) AppCompatButton btnPrevious;
@@ -45,7 +44,7 @@ public class MapFragment extends BaseFragment {
     private int page = 0;
 
 
-    Observer<List<MapItem>> observer = new Observer<List<MapItem>>() {
+    Observer<List<PictureItem>> observer = new Observer<List<PictureItem>>() {
 
         @Override
         public void onCompleted() {
@@ -59,7 +58,7 @@ public class MapFragment extends BaseFragment {
         }
 
         @Override
-        public void onNext(List<MapItem> mapItems) {
+        public void onNext(List<PictureItem> mapItems) {
             swipeRefreshLayout.setRefreshing(false);
             tvPage.setText(getString(R.string.page_with_number,page));
             adapter.setImages(mapItems);

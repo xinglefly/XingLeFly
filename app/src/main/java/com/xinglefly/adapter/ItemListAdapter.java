@@ -8,16 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
-import com.xinglefly.model.MapItem;
+import com.xinglefly.model.PictureItem;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ItemListAdapter extends RecyclerView.Adapter {
 
-    private List<MapItem> images;
+    private List<PictureItem> images;
 
-    public void setImages(List<MapItem> images) {
+    public void setImages(List<PictureItem> images) {
         this.images = images;
         notifyDataSetChanged();
     }
@@ -31,8 +31,9 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
-        MapItem mapItem = images.get(position);
+        PictureItem mapItem = images.get(position);
         viewHolder.descriptionTv.setText(mapItem.description);
+//        Glide.with(holder.itemView.getContext()).load(mapItem.imageUrl).placeholder(R.mipmap.ic_launcher).crossFade().into(viewHolder.imageIv);
         Picasso.with(holder.itemView.getContext()).load(mapItem.imageUrl).into(viewHolder.imageIv);
     }
 

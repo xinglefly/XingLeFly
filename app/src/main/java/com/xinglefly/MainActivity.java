@@ -6,17 +6,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
-import com.xinglefly.module.map.MapFragment;
+import com.xinglefly.module.picture.PictureFragment;
 import com.xinglefly.module.shoot.ShootFragment;
 import com.xinglefly.module.skill.TechnologyFragment;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.toolBar) Toolbar toolbar;
     @BindView(R.id.viewPager) ViewPager viewPager;
     @BindView(android.R.id.tabs) TabLayout tabs;
 
@@ -25,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        setSupportActionBar(toolbar);
         setViewPagerData();
     }
 
@@ -35,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public Fragment getItem(int position) {
                 switch (position){
-                    case 0:return new MapFragment();
+                    case 0:return new PictureFragment();
                     case 1:return new ShootFragment();
                     case 2:return new TechnologyFragment();
-                    default:return new MapFragment();
+                    default:return new PictureFragment();
                 }
             }
 
