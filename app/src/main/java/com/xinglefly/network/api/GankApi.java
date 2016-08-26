@@ -11,5 +11,7 @@ import rx.Observable;
 public interface GankApi {
 
     @GET("data/福利/{number}/{page}")
-    Observable<GankBeautyResult> getBeauties(@Path("number") int number, @Path("page") int page);
+    Observable<GankBeautyResult> getBeauties(@Path("number") int number,
+                                             @Path("page") int page);
+
 }

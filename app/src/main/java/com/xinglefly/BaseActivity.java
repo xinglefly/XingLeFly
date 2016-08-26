@@ -1,17 +1,15 @@
 package com.xinglefly;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.xinglefly.event.NetWorkEvent;
-import com.xinglefly.util.LogUtil;
-
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import rx.Subscription;
 
-public class BaseFragment extends Fragment {
+public  class  BaseActivity extends AppCompatActivity{
+
 
     protected Subscription subscription;
 
@@ -21,17 +19,18 @@ public class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         XingLeApp.RegisterEventBus(this);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    protected void onDestroy() {
+        super.onDestroy();
         XingLeApp.unRegisterEventBus(this);
         unSubscrib();
     }
+
 
     @Subscribe
     public void showNetErr(NetWorkEvent event){
@@ -42,8 +41,5 @@ public class BaseFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-
-
 
 }

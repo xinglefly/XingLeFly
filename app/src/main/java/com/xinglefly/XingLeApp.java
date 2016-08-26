@@ -4,9 +4,14 @@ import android.app.Application;
 
 import com.xinglefly.util.LogUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
+import rx.Subscription;
+
 public class XingLeApp extends Application{
 
     private static XingLeApp mInstance;
+
 
     @Override
     public void onCreate() {
@@ -17,5 +22,19 @@ public class XingLeApp extends Application{
 
     public static XingLeApp getInstance(){
         return mInstance;
+    }
+
+
+
+    public static void RegisterEventBus(Object subscriber){
+        EventBus.getDefault().register(subscriber);
+    }
+
+    public static void unRegisterEventBus(Object subscriber){
+        EventBus.getDefault().unregister(subscriber);
+    }
+
+    public static void postEvent(Object event){
+        EventBus.getDefault().post(event);
     }
 }

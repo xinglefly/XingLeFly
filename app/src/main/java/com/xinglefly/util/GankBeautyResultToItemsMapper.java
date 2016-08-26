@@ -25,7 +25,7 @@ public class GankBeautyResultToItemsMapper implements Func1<GankBeautyResult, Li
     @Override
     public List<PictureItem> call(GankBeautyResult gankBeautyResult) {
         List<GankBeauty> gankBeauties = gankBeautyResult.beauties;
-        List<PictureItem> items = new ArrayList<PictureItem>(gankBeauties.size());
+        List<PictureItem> items = new ArrayList(gankBeauties.size());
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
 

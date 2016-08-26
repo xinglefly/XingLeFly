@@ -10,20 +10,19 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.TextView;
-
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.ItemListAdapter;
+import com.xinglefly.event.NetWorkEvent;
 import com.xinglefly.model.PictureItem;
 import com.xinglefly.network.Network;
 import com.xinglefly.util.GankBeautyResultToItemsMapper;
 import com.xinglefly.util.LogUtil;
 import com.xinglefly.util.ToastUtil;
-
+import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,10 +38,10 @@ public class PictureFragment extends BaseFragment {
     @BindView(R.id.btn_next) AppCompatButton btnNext;
     @BindView(R.id.rv_grid) RecyclerView rvGrid;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.net_err) ViewStub netErr;
 
     private ItemListAdapter adapter = new ItemListAdapter();
     private int page = 0;
-
 
     Observer<List<PictureItem>> observer = new Observer<List<PictureItem>>() {
 
@@ -54,7 +53,8 @@ public class PictureFragment extends BaseFragment {
         @Override
         public void onError(Throwable e) {
             swipeRefreshLayout.setRefreshing(false);
-            ToastUtil.showToast("请求超时");
+            ToastUtil.showToast(e.getMessage());
+            LogUtil.e("%s",e.getMessage());
         }
 
         @Override
@@ -62,7 +62,7 @@ public class PictureFragment extends BaseFragment {
             swipeRefreshLayout.setRefreshing(false);
             tvPage.setText(getString(R.string.page_with_number,page));
             adapter.setImages(mapItems);
-            LogUtil.d("%s",mapItems);
+            LogUtil.d("%d",mapItems.size());
         }
     };
 
@@ -77,8 +77,10 @@ public class PictureFragment extends BaseFragment {
 
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE,Color.RED,Color.GREEN,Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
+
         return view;
     }
+
 
     @OnClick({R.id.btn_previous,R.id.btn_next})
     void onClick(View view){
@@ -96,13 +98,19 @@ public class PictureFragment extends BaseFragment {
 
     private void loadPage(int page) {
         swipeRefreshLayout.setRefreshing(true);
-        unsubscribe();
         subscription = Network.getGankApi()
                 .getBeauties(10,page)
                 .map(GankBeautyResultToItemsMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+
+    @Subscribe
+    public void showNetErr(NetWorkEvent event){
+        if (event.isNetwork()) netErr.setVisibility(View.GONE);
+        else netErr.setVisibility(View.VISIBLE);
     }
 
 }

@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import com.xinglefly.module.picture.PictureFragment;
 import com.xinglefly.module.shoot.ShootFragment;
 import com.xinglefly.module.skill.TechnologyFragment;
+
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
     @BindView(R.id.viewPager) ViewPager viewPager;
     @BindView(android.R.id.tabs) TabLayout tabs;
 
@@ -52,5 +55,10 @@ public class MainActivity extends AppCompatActivity {
         });
         tabs.setupWithViewPager(viewPager);
     }
+
+    /*@Subscribe
+    public void receiverEvent(Object event) {
+        super.receiverEvent(event);
+    }*/
 
 }
