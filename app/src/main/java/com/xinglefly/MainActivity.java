@@ -8,9 +8,6 @@ import android.support.v4.view.ViewPager;
 import com.xinglefly.module.picture.PictureFragment;
 import com.xinglefly.module.shoot.ShootFragment;
 import com.xinglefly.module.skill.TechnologyFragment;
-
-import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,9 +53,5 @@ public class MainActivity extends BaseActivity {
         tabs.setupWithViewPager(viewPager);
     }
 
-    /*@Subscribe
-    public void receiverEvent(Object event) {
-        super.receiverEvent(event);
-    }*/
 
 }

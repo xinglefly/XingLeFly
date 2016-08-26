@@ -20,6 +20,7 @@ import com.xinglefly.model.PictureItem;
 import com.xinglefly.network.Network;
 import com.xinglefly.util.GankBeautyResultToItemsMapper;
 import com.xinglefly.util.LogUtil;
+import com.xinglefly.util.PreferenceUtil;
 import com.xinglefly.util.ToastUtil;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
@@ -109,8 +110,18 @@ public class PictureFragment extends BaseFragment {
 
     @Subscribe
     public void showNetErr(NetWorkEvent event){
-        if (event.isNetwork()) netErr.setVisibility(View.GONE);
-        else netErr.setVisibility(View.VISIBLE);
+        if (event.isNetwork()){
+            netErr.setVisibility(View.GONE);
+        } else{
+            netErr.setVisibility(View.VISIBLE);
+            PreferenceUtil.getInstance(getActivity()).setIsNetWork(true);
+        }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (PreferenceUtil.getInstance(getActivity()).isNetwork()) netErr.setVisibility(View.VISIBLE);
+        else netErr.setVisibility(View.GONE);
+    }
 }

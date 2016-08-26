@@ -18,7 +18,6 @@ public class NetworkReceiver extends BroadcastReceiver {
         NetworkInfo wifiInfo = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo activeInfo = manager.getActiveNetworkInfo();
 
-
         if (mobileInfo.isConnected()) {
             ToastUtil.showToast("温馨提示，手机网络会损失流量请连接附近wifi！");
             XingLeApp.postEvent(new NetWorkEvent(true));
