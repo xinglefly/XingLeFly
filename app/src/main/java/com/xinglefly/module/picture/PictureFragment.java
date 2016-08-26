@@ -20,9 +20,7 @@ import com.xinglefly.model.PictureItem;
 import com.xinglefly.network.Network;
 import com.xinglefly.util.GankBeautyResultToItemsMapper;
 import com.xinglefly.util.LogUtil;
-import com.xinglefly.util.PreferenceUtil;
 import com.xinglefly.util.ToastUtil;
-import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +37,6 @@ public class PictureFragment extends BaseFragment {
     @BindView(R.id.btn_next) AppCompatButton btnNext;
     @BindView(R.id.rv_grid) RecyclerView rvGrid;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.net_err) ViewStub netErr;
 
     private ItemListAdapter adapter = new ItemListAdapter();
     private int page = 0;
@@ -108,20 +105,5 @@ public class PictureFragment extends BaseFragment {
     }
 
 
-    @Subscribe
-    public void showNetErr(NetWorkEvent event){
-        if (event.isNetwork()){
-            netErr.setVisibility(View.GONE);
-        } else{
-            netErr.setVisibility(View.VISIBLE);
-            PreferenceUtil.getInstance(getActivity()).setIsNetWork(true);
-        }
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (PreferenceUtil.getInstance(getActivity()).isNetwork()) netErr.setVisibility(View.VISIBLE);
-        else netErr.setVisibility(View.GONE);
-    }
 }

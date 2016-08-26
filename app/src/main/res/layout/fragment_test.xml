@@ -15,22 +15,16 @@
             android:id="@+id/tv_page"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="装逼" />
+
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_previous"
+            android:id="@+id/btn_load"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:enabled="false"
-            android:text="上一页" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="下一页" />
+            android:text="加载" />
 
     </LinearLayout>
 

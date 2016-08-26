@@ -1,5 +1,6 @@
 package com.xinglefly;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,8 +11,8 @@ import rx.Subscription;
 
 public  class  BaseActivity extends AppCompatActivity{
 
-
     protected Subscription subscription;
+    protected Context mContext;
 
     public void unSubscrib(){
         if (subscription!=null && !subscription.isUnsubscribed())
@@ -22,6 +23,7 @@ public  class  BaseActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         XingLeApp.RegisterEventBus(this);
+        mContext = this;
     }
 
     @Override
