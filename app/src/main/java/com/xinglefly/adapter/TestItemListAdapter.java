@@ -11,15 +11,22 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
 import com.xinglefly.model.PictureItem;
+import com.xinglefly.model.TestItem;
 import com.xinglefly.util.LogUtil;
 
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ItemListAdapter extends RecyclerView.Adapter {
+public class TestItemListAdapter extends RecyclerView.Adapter {
 
-    private List<PictureItem> images;
+    private List<TestItem> images;
+
+    public void setImages(List<TestItem> images) {
+        this.images = images;
+        notifyDataSetChanged();
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,15 +37,11 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
-        PictureItem mapItem = images.get(position);
+        TestItem mapItem = images.get(position);
         LogUtil.Object(mapItem);
         viewHolder.descriptionTv.setText(mapItem.description);
-        Picasso.with(holder.itemView.getContext()).load(mapItem.imageUrl).into(viewHolder.imageIv);
-    }
-
-    public void setImages(List<PictureItem> images) {
-        this.images = images;
-        notifyDataSetChanged();
+        Glide.with(holder.itemView.getContext()).load(mapItem.image_url).into(viewHolder.imageIv);
+//        Picasso.with(holder.itemView.getContext()).load(mapItem.image_url).into(viewHolder.imageIv);
     }
 
     @Override

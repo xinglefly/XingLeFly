@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.ItemListAdapter;
+import com.xinglefly.adapter.TestItemListAdapter;
 import com.xinglefly.model.PictureItem;
+import com.xinglefly.model.TestItem;
 import com.xinglefly.network.Network;
 
 import java.util.List;
@@ -34,7 +36,7 @@ public class TestFragment extends BaseFragment{
     @BindView(R.id.rv_grid) RecyclerView rvGrid;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
 
-    private ItemListAdapter adapter = new ItemListAdapter();
+    private TestItemListAdapter adapter = new TestItemListAdapter();
 
 
     @Nullable
@@ -62,7 +64,7 @@ public class TestFragment extends BaseFragment{
                 .subscribe(observer);
     }
 
-    Observer<List<PictureItem>> observer = new Observer<List<PictureItem>>() {
+    Observer<List<TestItem>> observer = new Observer<List<TestItem>>() {
         @Override
         public void onCompleted() {
 
@@ -74,7 +76,7 @@ public class TestFragment extends BaseFragment{
         }
 
         @Override
-        public void onNext(List<PictureItem> pictureItems) {
+        public void onNext(List<TestItem> pictureItems) {
             swipeRefreshLayout.setRefreshing(false);
             adapter.setImages(pictureItems);
         }

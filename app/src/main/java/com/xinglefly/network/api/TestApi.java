@@ -1,6 +1,7 @@
 package com.xinglefly.network.api;
 
 import com.xinglefly.model.PictureItem;
+import com.xinglefly.model.TestItem;
 
 
 import java.util.List;
@@ -12,5 +13,5 @@ import rx.Observable;
 public interface TestApi {
 
     @GET("search")
-    Observable<List<PictureItem>> search (@Query("q") String query);
+    Observable<List<TestItem>> search (@Query("q") String query);
 }
