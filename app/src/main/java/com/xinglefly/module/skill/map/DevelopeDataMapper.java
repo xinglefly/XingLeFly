@@ -1,5 +1,6 @@
 package com.xinglefly.module.skill.map;
 
+import com.xinglefly.model.DeveloperInfo;
 import com.xinglefly.model.DeveloperItem;
 import com.xinglefly.model.ResultData;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 import rx.functions.Func1;
 
-public class DevelopeDataMapper implements Func1<ResultData,List<DeveloperItem>>{
+public class DevelopeDataMapper implements Func1<ResultData,DeveloperInfo>{
 
     private static DevelopeDataMapper instance = new DevelopeDataMapper();
 
@@ -19,7 +20,7 @@ public class DevelopeDataMapper implements Func1<ResultData,List<DeveloperItem>>
     }
 
     @Override
-    public List<DeveloperItem> call(ResultData resultData) {
-        return resultData.getDevelopers;
+    public DeveloperInfo call(ResultData resultData) {
+         return resultData.getData;
     }
 }

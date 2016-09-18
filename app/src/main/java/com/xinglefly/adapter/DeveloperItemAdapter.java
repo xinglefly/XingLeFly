@@ -17,6 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Deprecated
 public class DeveloperItemAdapter extends RecyclerView.Adapter {
 
     private List<DeveloperItem> items;
@@ -32,8 +33,8 @@ public class DeveloperItemAdapter extends RecyclerView.Adapter {
         BindViewHolder viewHolder = (BindViewHolder) holder;
         DeveloperItem item = items.get(position);
         LogUtil.Object(item);
-        viewHolder.tvTitle.setText(item.getDescription());
-        Picasso.with(holder.itemView.getContext()).load(item.getImage()).into(viewHolder.imgIcon);
+//        viewHolder.tvTitle.setText(item.getDescription());
+//        Picasso.with(holder.itemView.getContext()).load(item.getImage()).into(viewHolder.imgIcon);
     }
 
     public void setData(List<DeveloperItem> items) {

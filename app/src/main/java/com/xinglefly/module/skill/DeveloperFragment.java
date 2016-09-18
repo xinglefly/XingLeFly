@@ -10,10 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
+import com.xinglefly.adapter.DevelopAdapter;
 import com.xinglefly.adapter.DeveloperItemAdapter;
+import com.xinglefly.model.DeveloperInfo;
 import com.xinglefly.model.DeveloperItem;
 import com.xinglefly.module.skill.map.DevelopeDataMapper;
 import com.xinglefly.network.Network;
@@ -33,10 +36,10 @@ public class DeveloperFragment extends BaseFragment {
     @BindView(R.id.tv_page) TextView tvPage;
     @BindView(R.id.btn_previous) AppCompatButton btnPrevious;
     @BindView(R.id.btn_next) AppCompatButton btnNext;
-    @BindView(R.id.rv_grid) RecyclerView rvGrid;
+    @BindView(R.id.listview) ListView listView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
 
-    private DeveloperItemAdapter adapter = new DeveloperItemAdapter();
+    private DevelopAdapter mAdapter = new DevelopAdapter(getActivity());
     private int page = 0;
 
     @Nullable
@@ -45,8 +48,7 @@ public class DeveloperFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_developer, container, false);
         ButterKnife.bind(this, view);
 
-        rvGrid.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,true));
-        rvGrid.setAdapter(adapter);
+        listView.setAdapter(mAdapter);
 
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE,Color.RED,Color.GREEN,Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
@@ -79,7 +81,7 @@ public class DeveloperFragment extends BaseFragment {
     }
 
 
-    Observer<List<DeveloperItem>> observer = new Observer<List<DeveloperItem>>() {
+    Observer<DeveloperInfo> observer = new Observer<DeveloperInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -92,9 +94,10 @@ public class DeveloperFragment extends BaseFragment {
         }
 
         @Override
-        public void onNext(List<DeveloperItem> developerItems) {
+        public void onNext(DeveloperInfo info) {
             swipeRefreshLayout.setRefreshing(false);
-            adapter.setData(developerItems);
+            LogUtil.d("info: %s",info.toString());
+//            mAdapter.addData(developerItems);
         }
     };
 

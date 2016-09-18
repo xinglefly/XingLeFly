@@ -2,16 +2,23 @@ package com.xinglefly.model;
 
 import java.io.Serializable;
 
-public class Dev_user implements Serializable {
+public class DeveloperUser implements Serializable{
+
+    /*"user":{
+        "id":"230560", "name":"炼金术士", "avatar":
+        "http://toutiaoio.qiniudn.com/user/78647f5bc3ec43b3a47ac5c4d402f1a5/thumb", "bio":
+        "全栈", "following":false, "company":"保密", "title":"高级开发工程师", "follow_skill":
+        "Java，node，iOS"
+    }*/
 
     private Integer id;
     private String name;
     private String avatar;
     private String bio;
+    private boolean following;
     private String company;
     private String title;
-    private String foll_skill;
-
+    private String follow_skill;
 
     public Integer getId() {
         return id;
@@ -45,6 +52,14 @@ public class Dev_user implements Serializable {
         this.bio = bio;
     }
 
+    public boolean isFollowing() {
+        return following;
+    }
+
+    public void setFollowing(boolean following) {
+        this.following = following;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -61,14 +76,11 @@ public class Dev_user implements Serializable {
         this.title = title;
     }
 
-    public String getFoll_skill() {
-        return foll_skill;
+    public String getFollow_skill() {
+        return follow_skill;
     }
 
-    public void setFoll_skill(String foll_skill) {
-        this.foll_skill = foll_skill;
-    }
-
-    public Dev_user() {
+    public void setFollow_skill(String follow_skill) {
+        this.follow_skill = follow_skill;
     }
 }

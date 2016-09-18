@@ -6,28 +6,60 @@ import java.util.ArrayList;
 public class DeveloperItem implements Serializable{
 
 
-    /*{"errcode":0, "msg":"ok", "ret":0, "data":[{
-        "id":87719, "name":"Dbaplus.cn精选文章", "image":
-        "http://toutiaoio.qiniudn.com/subject/3dee6b6fe71449f3b53ecea8d1616eed/thumb", "description":
-        "数据连接未来！围绕数据库、大数据、PaaS云，顶级大咖、技术干货，每天精品原创文章推送、每周线上技术分享、每月线下技术沙龙，场场爆满、受众过十万，成为运维圈最专注围绕“数据”的学习交流和专业社群！更多精彩，欢迎关注dbaplus.cn!", "post_count":
-        198, "subscriber_count":815, "type":"team", "user":{
-            "id":"211315", "name":"Dbaplus.cn精选文章", "avatar":
-            "http://toutiaoio.qiniudn.com/user/b9b4cd8f019f4c02bff4fc72528c16e6/thumb", "bio":
-            "", "company":null, "title":null, "follow_skill":null
-        },"created_at":1458736282, "subscribed":false, "member_count":1, "push_enabled":false
+    /*"article":[{
+            "show_origin_content":false, "is_advertorial":false, "id":612861, "title":
+            "WebSocket 和 Socket 的区别", "contributor":"炼金术士", "original_site_name":
+            "jianshu.com", "is_recommend":false, "original_url":
+            "http://toutiao.io/j/kbujf3", "image":null, "thumbnail":"", "is_featured":
+            true, "comment_count":5, "like_count":33, "liked":false, "subject":{
+                "id":136908, "name":"炼金术士", "image":
+                "http://toutiaoio.qiniudn.com/subject/7ff301d003464f20a12f9e315b7e1ff8/thumb", "type":
+                "person"
+            },"user":{
+                "id":"230560", "name":"炼金术士", "avatar":
+                "http://toutiaoio.qiniudn.com/user/78647f5bc3ec43b3a47ac5c4d402f1a5/thumb", "bio":
+                "全栈", "following":false, "company":"保密", "title":"高级开发工程师", "follow_skill":
+                "Java，node，iOS"
+            },"author_info":{
+                "name":"TheAlchemist", "url":""
+            },"created_at":1473739503
+        }
     }*/
 
+    private boolean show_origin_content;
+    private boolean is_advertorial;
     private Integer id;
-    private String name;
+    private String title;
+    private String contributor;
+    private String original_site_name;
+    private boolean is_recommend;
+    private String original_url;
     private String image;
-    private String description;
-    private Integer subscriber_count;
-    private String type;
-    private Long create_at;
-    private boolean subscribed;
-    private Integer member_count;
-    private boolean push_enabled;
-    public ArrayList<Dev_user> devUsers;
+    private String thumbnail;
+    private boolean is_featured;
+    private Integer comment_count;
+    private Integer like_count;
+    private boolean liked;
+    private Long created_at;
+
+    private Subject subject;
+    private DeveloperUser user;
+
+    public boolean isShow_origin_content() {
+        return show_origin_content;
+    }
+
+    public void setShow_origin_content(boolean show_origin_content) {
+        this.show_origin_content = show_origin_content;
+    }
+
+    public boolean is_advertorial() {
+        return is_advertorial;
+    }
+
+    public void setIs_advertorial(boolean is_advertorial) {
+        this.is_advertorial = is_advertorial;
+    }
 
     public Integer getId() {
         return id;
@@ -37,12 +69,44 @@ public class DeveloperItem implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContributor() {
+        return contributor;
+    }
+
+    public void setContributor(String contributor) {
+        this.contributor = contributor;
+    }
+
+    public String getOriginal_site_name() {
+        return original_site_name;
+    }
+
+    public void setOriginal_site_name(String original_site_name) {
+        this.original_site_name = original_site_name;
+    }
+
+    public boolean is_recommend() {
+        return is_recommend;
+    }
+
+    public void setIs_recommend(boolean is_recommend) {
+        this.is_recommend = is_recommend;
+    }
+
+    public String getOriginal_url() {
+        return original_url;
+    }
+
+    public void setOriginal_url(String original_url) {
+        this.original_url = original_url;
     }
 
     public String getImage() {
@@ -53,71 +117,67 @@ public class DeveloperItem implements Serializable{
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
-    public Integer getSubscriber_count() {
-        return subscriber_count;
+    public boolean is_featured() {
+        return is_featured;
     }
 
-    public void setSubscriber_count(Integer subscriber_count) {
-        this.subscriber_count = subscriber_count;
+    public void setIs_featured(boolean is_featured) {
+        this.is_featured = is_featured;
     }
 
-    public String getType() {
-        return type;
+    public Integer getComment_count() {
+        return comment_count;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setComment_count(Integer comment_count) {
+        this.comment_count = comment_count;
     }
 
-    public Long getCreate_at() {
-        return create_at;
+    public Integer getLike_count() {
+        return like_count;
     }
 
-    public void setCreate_at(Long create_at) {
-        this.create_at = create_at;
+    public void setLike_count(Integer like_count) {
+        this.like_count = like_count;
     }
 
-    public boolean isSubscribed() {
-        return subscribed;
+    public boolean isLiked() {
+        return liked;
     }
 
-    public void setSubscribed(boolean subscribed) {
-        this.subscribed = subscribed;
+    public void setLiked(boolean liked) {
+        this.liked = liked;
     }
 
-    public Integer getMember_count() {
-        return member_count;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setMember_count(Integer member_count) {
-        this.member_count = member_count;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
-    public boolean isPush_enabled() {
-        return push_enabled;
+    public DeveloperUser getUser() {
+        return user;
     }
 
-    public void setPush_enabled(boolean push_enabled) {
-        this.push_enabled = push_enabled;
+    public void setUser(DeveloperUser user) {
+        this.user = user;
     }
 
-    public ArrayList<Dev_user> getDevUsers() {
-        return devUsers;
+    public Long getCreated_at() {
+        return created_at;
     }
 
-    public void setDevUsers(ArrayList<Dev_user> devUsers) {
-        this.devUsers = devUsers;
-    }
-
-    public DeveloperItem() {
-
+    public void setCreated_at(Long created_at) {
+        this.created_at = created_at;
     }
 }
