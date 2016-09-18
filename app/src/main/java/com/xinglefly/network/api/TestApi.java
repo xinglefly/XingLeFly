@@ -1,11 +1,7 @@
 package com.xinglefly.network.api;
 
-import com.xinglefly.model.PictureItem;
 import com.xinglefly.model.TestItem;
-
-
 import java.util.List;
-
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -13,5 +9,5 @@ import rx.Observable;
 public interface TestApi {
 
     @GET("search")
-    Observable<List<TestItem>> search (@Query("q") String query);
+    Observable<List<TestItem>> query (@Query("q") String query);
 }

@@ -1,8 +1,8 @@
 package com.xinglefly.network;
 
 import com.xinglefly.network.api.GankApi;
+import com.xinglefly.network.api.DeveloperApi;
 import com.xinglefly.network.api.TestApi;
-
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
@@ -12,37 +12,41 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Network {
 
-    private static TestApi testApi;
     private static GankApi gankApi;
+    private static DeveloperApi developerApi;
+    private static TestApi testApi;
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory gsonConvertFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
 
+    private static Retrofit getRetrofit(String url) {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(url)
+                .addConverterFactory(gsonConvertFactory)
+                .addCallAdapterFactory(rxJavaCallAdapterFactory)
+                .build();
+    }
+
 
     public static GankApi getGankApi() {
-        if (gankApi == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .client(okHttpClient)
-                    .baseUrl("http://gank.io/api/")
-                    .addConverterFactory(gsonConvertFactory)
-                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
-                    .build();
-            gankApi = retrofit.create(GankApi.class);
-        }
+        if (gankApi == null)
+            gankApi = getRetrofit("http://gank.io/api/").create(GankApi.class);
         return gankApi;
+    }
+
+    public static DeveloperApi getDeveloperApi(){
+        if (developerApi ==null)
+            developerApi = getRetrofit("http://api.toutiao.io/").create(DeveloperApi.class);
+        return developerApi;
     }
 
 
     public static TestApi getTestApi(){
-        if (testApi==null){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://zhuangbi.info/")
-                    .client(okHttpClient)
-                    .addConverterFactory(gsonConvertFactory)
-                    .addCallAdapterFactory(rxJavaCallAdapterFactory)
-                    .build();
-            testApi = retrofit.create(TestApi.class);
-        }
+        if (testApi==null)
+            testApi = getRetrofit("http://zhuangbi.info/").create(TestApi.class);
         return testApi;
     }
+
+
 }

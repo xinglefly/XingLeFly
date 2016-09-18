@@ -6,46 +6,49 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
+
+import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
-import com.xinglefly.model.TestItem;
+import com.xinglefly.model.DeveloperItem;
 import com.xinglefly.util.LogUtil;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TestItemListAdapter extends RecyclerView.Adapter {
+public class DeveloperItemAdapter extends RecyclerView.Adapter {
 
-    private List<TestItem> images;
+    private List<DeveloperItem> items;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.technology_item, parent, false);
         return new BindViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
-        TestItem mapItem = images.get(position);
-        LogUtil.Object(mapItem);
-        viewHolder.descriptionTv.setText(mapItem.description);
-        Glide.with(holder.itemView.getContext()).load(mapItem.image_url).into(viewHolder.imageIv);
+        DeveloperItem item = items.get(position);
+        LogUtil.Object(item);
+        viewHolder.tvTitle.setText(item.getDescription());
+        Picasso.with(holder.itemView.getContext()).load(item.getImage()).into(viewHolder.imgIcon);
     }
 
-    public void setImages(List<TestItem> images) {
-        this.images = images;
+    public void setData(List<DeveloperItem> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return images == null ? 0: images.size();
+        return items == null ? 0: items.size();
     }
 
     static class BindViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.imageIv) ImageView imageIv;
-        @BindView(R.id.descriptionTv) TextView descriptionTv;
+        @BindView(R.id.img_icon) ImageView imgIcon;
+        @BindView(R.id.tv_title) TextView tvTitle;
 
         public BindViewHolder(View itemView) {
             super(itemView);
