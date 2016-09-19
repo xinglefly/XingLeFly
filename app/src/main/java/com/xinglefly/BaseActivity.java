@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.xinglefly.event.NetWorkEvent;
+import com.xinglefly.util.ActivityController;
+
 import org.greenrobot.eventbus.Subscribe;
 
 import rx.Subscription;
@@ -18,6 +20,7 @@ public  class  BaseActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         XingLeApp.RegisterEventBus(this);
+        ActivityController.add(this);
         mContext = this;
     }
 
@@ -25,6 +28,7 @@ public  class  BaseActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         XingLeApp.unRegisterEventBus(this);
+        ActivityController.remove(this);
     }
 
 

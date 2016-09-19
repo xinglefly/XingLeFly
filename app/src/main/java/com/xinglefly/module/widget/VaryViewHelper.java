@@ -9,6 +9,7 @@ import android.view.ViewGroup;
  * 用于切换布局,用一个新的布局替换掉原先的布局
  */
 public class VaryViewHelper implements IVaryViewHelper {
+
 	private View view;
 	private ViewGroup parentView;
 	private int viewIndex;
@@ -22,12 +23,10 @@ public class VaryViewHelper implements IVaryViewHelper {
 
 	private void init() {
 		params = view.getLayoutParams();
-		if (view.getParent() != null) {
-			parentView = (ViewGroup) view.getParent();
-		} else {
-			parentView = (ViewGroup) view.getRootView().findViewById(
-					android.R.id.content);
-		}
+
+		if (view.getParent() != null) parentView = (ViewGroup) view.getParent();
+		else parentView = (ViewGroup) view.getRootView().findViewById(android.R.id.content);
+
 		int count = parentView.getChildCount();
 		for (int index = 0; index < count; index++) {
 			if (view == parentView.getChildAt(index)) {
@@ -50,16 +49,16 @@ public class VaryViewHelper implements IVaryViewHelper {
 
 	@Override
 	public void showLayout(View view) {
-		if (parentView == null) {
-			init();
-		}
+		if (parentView == null) init();
+
 		this.currentView = view;
+
 		// 如果已经是那个view，那就不需要再进行替换操作了
 		if (parentView.getChildAt(viewIndex) != view) {
 			ViewGroup parent = (ViewGroup) view.getParent();
-			if (parent != null) {
-				parent.removeView(view);
-			}
+
+			if (parent != null) parent.removeView(view);
+
 			parentView.removeViewAt(viewIndex);
 			parentView.addView(view, viewIndex, params);
 		}

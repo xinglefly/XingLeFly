@@ -19,6 +19,7 @@ import com.xinglefly.entity.Article;
 import com.xinglefly.entity.DeveloperInfo;
 import com.xinglefly.module.skill.presenter.DevelopPresenter;
 import com.xinglefly.module.widget.SubPageDetailActivity;
+import com.xinglefly.util.ActivityUtil;
 import com.xinglefly.util.LogUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,9 +43,17 @@ public class DeveloperFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_developer, container, false);
-        ButterKnife.bind(this, view);
+        return inflater.inflate(R.layout.fragment_developer, container, false);
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ButterKnife.bind(this, getView());
+        initView();
+    }
+
+    private void initView() {
         presenter = new DevelopPresenter(this);
 
         mAdapter = new DevelopAdapter(getActivity());
@@ -52,14 +61,13 @@ public class DeveloperFragment extends BaseFragment {
 
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE,Color.RED,Color.GREEN,Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
-        return view;
     }
 
     @OnItemClick(R.id.listview)
     void onItemClick(AdapterView<?> adapterView,int position){
         Article article = (Article) adapterView.getAdapter().getItem(position);
         if (article!=null)
-            startActivity(new Intent(getActivity(), SubPageDetailActivity.class)
+            ActivityUtil.startActivity(getActivity(),new Intent(getActivity(), SubPageDetailActivity.class)
                     .putExtra("url", article.getOriginal_url())
                     .putExtra("title",article.getOriginal_site_name())
                     .putExtra("sharetitle",""));

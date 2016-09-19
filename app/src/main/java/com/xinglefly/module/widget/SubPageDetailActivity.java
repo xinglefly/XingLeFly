@@ -35,7 +35,7 @@ public class SubPageDetailActivity extends BaseActivity{
         ButterKnife.bind(this);
         getIntentVal();
         initView();
-        initWebView();
+        WebviewConfig();
     }
 
     private void getIntentVal() {
@@ -46,7 +46,7 @@ public class SubPageDetailActivity extends BaseActivity{
 
     private void initView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            webView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//            webView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
         helper = new LoadViewHelper(new VaryViewHelperX(webView));
         helper.showLoading("加载中...");
@@ -60,7 +60,7 @@ public class SubPageDetailActivity extends BaseActivity{
         });*/
     }
 
-    private void initWebView() {
+    private void WebviewConfig() {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);

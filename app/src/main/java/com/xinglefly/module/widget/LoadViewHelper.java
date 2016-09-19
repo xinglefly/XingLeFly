@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.xinglefly.R;
 
+import butterknife.ButterKnife;
+
 
 public class LoadViewHelper {
 
@@ -23,9 +25,9 @@ public class LoadViewHelper {
 
 	public void showError(String errorText, String buttonText, OnClickListener onClickListener) {
 		View layout = helper.inflate(R.layout.load_error);
-		TextView textView = (TextView) layout.findViewById(R.id.textView1);
+		TextView textView = ButterKnife.findById(layout,R.id.textView1);
 		textView.setText(errorText);
-		Button button = (Button) layout.findViewById(R.id.button1);
+		Button button = ButterKnife.findById(layout,R.id.button1);
 		button.setText(buttonText);
 		button.setOnClickListener(onClickListener);
 		layout.setClickable(true);
@@ -34,9 +36,9 @@ public class LoadViewHelper {
 
 	public void showEmpty(String errorText, String buttonText, OnClickListener onClickListener) {
 		View layout = helper.inflate(R.layout.load_empty);
-		TextView textView = (TextView) layout.findViewById(R.id.textView1);
+		TextView textView = ButterKnife.findById(layout,R.id.textView1);
 		textView.setText(errorText);
-		Button button = (Button) layout.findViewById(R.id.button1);
+		Button button = ButterKnife.findById(layout,R.id.button1);
 		button.setText(buttonText);
 		button.setOnClickListener(onClickListener);
 		layout.setClickable(true);
@@ -45,7 +47,7 @@ public class LoadViewHelper {
 
 	public void showLoading(String loadText) {
 		View layout = helper.inflate(R.layout.load_ing);
-		TextView textView = (TextView) layout.findViewById(R.id.textView1);
+		TextView textView = ButterKnife.findById(layout,R.id.textView1);
 		textView.setText(loadText);
 		layout.setClickable(true);
 		helper.showLayout(layout);
