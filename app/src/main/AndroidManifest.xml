@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".module.widget.SubPageDetailActivity"
+            android:label="webview"
+            android:launchMode="singleInstance"/>
+
         <receiver android:name=".util.NetworkReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>

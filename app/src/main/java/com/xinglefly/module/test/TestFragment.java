@@ -15,7 +15,7 @@ import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.TestItemListAdapter;
 import com.xinglefly.entity.TestItem;
-import com.xinglefly.network.Network;
+
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,11 +50,11 @@ public class TestFragment extends BaseFragment{
     @OnClick(R.id.btn_load)
     void loadData(){
         swipeRefreshLayout.setRefreshing(true);
-        subscription = Network.getTestApi()
-                .query(etSearch.getText().toString())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+//        subscription = Network.getTestApi()
+//                .query(etSearch.getText().toString())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(observer);
     }
 
     Observer<List<TestItem>> observer = new Observer<List<TestItem>>() {

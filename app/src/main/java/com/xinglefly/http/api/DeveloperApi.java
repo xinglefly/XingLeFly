@@ -1,4 +1,4 @@
-package com.xinglefly.api;
+package com.xinglefly.http.api;
 
 import com.xinglefly.entity.DevelopResult;
 import com.xinglefly.entity.DeveloperInfo;

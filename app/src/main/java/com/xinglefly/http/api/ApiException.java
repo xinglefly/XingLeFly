@@ -1,4 +1,4 @@
-package com.xinglefly.api;
+package com.xinglefly.http.api;
 
 /**
  * Created by liukun on 16/3/10.

@@ -1,6 +1,6 @@
-package com.xinglefly.api.response;
+package com.xinglefly.http.response;
 
-import com.xinglefly.api.ApiException;
+import com.xinglefly.http.api.ApiException;
 import com.xinglefly.entity.HttpResult;
 
 import rx.functions.Func1;

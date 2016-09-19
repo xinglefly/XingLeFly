@@ -13,12 +13,6 @@ import rx.Subscription;
 
 public class BaseFragment extends Fragment {
 
-    protected Subscription subscription;
-
-    public void unSubscrib(){
-        if (subscription!=null && !subscription.isUnsubscribed())
-            subscription.unsubscribe();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +24,6 @@ public class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         XingLeApp.unRegisterEventBus(this);
-        unSubscrib();
     }
 
     @Subscribe

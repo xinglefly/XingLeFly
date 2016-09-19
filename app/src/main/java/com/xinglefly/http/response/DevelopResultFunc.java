@@ -1,9 +1,7 @@
-package com.xinglefly.api.response;
+package com.xinglefly.http.response;
 
-import com.xinglefly.api.ApiException;
+import com.xinglefly.http.api.ApiException;
 import com.xinglefly.entity.DevelopResult;
-import com.xinglefly.entity.DeveloperInfo;
-import com.xinglefly.entity.HttpResult;
 
 import rx.functions.Func1;
 
@@ -13,7 +11,7 @@ public class DevelopResultFunc<T> implements Func1<DevelopResult<T>, T>{
     @Override
     public T call(DevelopResult<T> httpResult) {
         if (httpResult.getRet() != 0) {
-            throw new ApiException(httpResult.getErrcode());
+            throw new ApiException(httpResult.getMsg());
         }
         return httpResult.getData();
     }

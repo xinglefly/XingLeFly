@@ -11,13 +11,8 @@ import rx.Subscription;
 
 public  class  BaseActivity extends AppCompatActivity{
 
-    protected Subscription subscription;
     protected Context mContext;
 
-    public void unSubscrib(){
-        if (subscription!=null && !subscription.isUnsubscribed())
-            subscription.unsubscribe();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +25,6 @@ public  class  BaseActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         XingLeApp.unRegisterEventBus(this);
-        unSubscrib();
     }
 
 

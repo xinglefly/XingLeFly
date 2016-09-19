@@ -30,7 +30,6 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
         PictureItem mapItem = images.get(position);
-        LogUtil.Object(mapItem);
         viewHolder.descriptionTv.setText(mapItem.description);
         Picasso.with(holder.itemView.getContext()).load(mapItem.imageUrl).into(viewHolder.imageIv);
     }

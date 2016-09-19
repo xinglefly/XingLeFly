@@ -1,5 +1,6 @@
 package com.xinglefly.module.skill;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,17 +9,21 @@ import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.DevelopAdapter;
+import com.xinglefly.entity.Article;
 import com.xinglefly.entity.DeveloperInfo;
-import com.xinglefly.http.HttpMethods;
+import com.xinglefly.module.skill.presenter.DevelopPresenter;
+import com.xinglefly.module.widget.SubPageDetailActivity;
 import com.xinglefly.util.LogUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 import rx.Subscriber;
 
 
@@ -31,6 +36,7 @@ public class DeveloperFragment extends BaseFragment {
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
 
     private DevelopAdapter mAdapter;
+    private DevelopPresenter presenter;
     private int page = 0;
 
     @Nullable
@@ -39,12 +45,24 @@ public class DeveloperFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_developer, container, false);
         ButterKnife.bind(this, view);
 
+        presenter = new DevelopPresenter(this);
+
         mAdapter = new DevelopAdapter(getActivity());
         listView.setAdapter(mAdapter);
 
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE,Color.RED,Color.GREEN,Color.YELLOW);
         swipeRefreshLayout.setEnabled(false);
         return view;
+    }
+
+    @OnItemClick(R.id.listview)
+    void onItemClick(AdapterView<?> adapterView,int position){
+        Article article = (Article) adapterView.getAdapter().getItem(position);
+        if (article!=null)
+            startActivity(new Intent(getActivity(), SubPageDetailActivity.class)
+                    .putExtra("url", article.getOriginal_url())
+                    .putExtra("title",article.getOriginal_site_name())
+                    .putExtra("sharetitle",""));
     }
 
 
@@ -64,13 +82,7 @@ public class DeveloperFragment extends BaseFragment {
 
     private void loadPage(int page) {
         swipeRefreshLayout.setRefreshing(true);
-        /*subscription = Network.getDeveloperApi()
-                .getToArtciles()
-                .map(DevelopeDataMapper.getInstance())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);*/
-        HttpMethods.getInstance().getDevelopInfo(subscribe);
+        presenter.getDevelopInfo(subscribe);
     }
 
 

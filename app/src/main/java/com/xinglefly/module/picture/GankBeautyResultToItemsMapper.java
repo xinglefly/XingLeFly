@@ -1,4 +1,4 @@
-package com.xinglefly.util;
+package com.xinglefly.module.picture;
 
 import com.xinglefly.entity.GankBeauty;
 import com.xinglefly.entity.GankBeautyResult;
