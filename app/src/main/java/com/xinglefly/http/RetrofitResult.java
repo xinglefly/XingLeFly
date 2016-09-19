@@ -1,8 +1,9 @@
-package com.xinglefly.network;
+package com.xinglefly.http;
 
-import com.xinglefly.network.api.GankApi;
 import com.xinglefly.api.DeveloperApi;
+import com.xinglefly.network.api.GankApi;
 import com.xinglefly.network.api.TestApi;
+
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
@@ -10,11 +11,12 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Network {
+public class RetrofitResult {
 
     private static GankApi gankApi;
     private static DeveloperApi developerApi;
     private static TestApi testApi;
+
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory gsonConvertFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
@@ -47,6 +49,4 @@ public class Network {
             testApi = getRetrofit("http://zhuangbi.info/").create(TestApi.class);
         return testApi;
     }
-
-
 }

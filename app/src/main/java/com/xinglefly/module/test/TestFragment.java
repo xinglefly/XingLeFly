@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
+
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.TestItemListAdapter;
-import com.xinglefly.model.TestItem;
+import com.xinglefly.entity.TestItem;
 import com.xinglefly.network.Network;
 import java.util.List;
 import butterknife.BindView;

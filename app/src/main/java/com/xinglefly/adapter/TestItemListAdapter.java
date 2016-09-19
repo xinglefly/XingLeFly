@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.xinglefly.R;
-import com.xinglefly.model.TestItem;
+import com.xinglefly.entity.TestItem;
 import com.xinglefly.util.LogUtil;
 import java.util.List;
 import butterknife.BindView;

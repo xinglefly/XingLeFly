@@ -1,9 +1,6 @@
-package com.xinglefly.model;
+package com.xinglefly.entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-public class DeveloperItem implements Serializable{
+public class Article{
 
 
     /*"article":[{
@@ -179,5 +176,28 @@ public class DeveloperItem implements Serializable{
 
     public void setCreated_at(Long created_at) {
         this.created_at = created_at;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "show_origin_content=" + show_origin_content +
+                ", is_advertorial=" + is_advertorial +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", contributor='" + contributor + '\'' +
+                ", original_site_name='" + original_site_name + '\'' +
+                ", is_recommend=" + is_recommend +
+                ", original_url='" + original_url + '\'' +
+                ", image='" + image + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", is_featured=" + is_featured +
+                ", comment_count=" + comment_count +
+                ", like_count=" + like_count +
+                ", liked=" + liked +
+                ", created_at=" + created_at +
+                ", subject=" + subject +
+                ", user=" + user +
+                '}';
     }
 }

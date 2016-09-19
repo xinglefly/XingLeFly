@@ -2,7 +2,7 @@ package com.xinglefly.network.api;
 
 
 
-import com.xinglefly.model.GankBeautyResult;
+import com.xinglefly.entity.GankBeautyResult;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

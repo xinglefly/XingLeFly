@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +13,13 @@ import android.widget.TextView;
 import com.xinglefly.BaseFragment;
 import com.xinglefly.R;
 import com.xinglefly.adapter.DevelopAdapter;
-import com.xinglefly.adapter.DeveloperItemAdapter;
-import com.xinglefly.model.DeveloperInfo;
-import com.xinglefly.model.DeveloperItem;
-import com.xinglefly.module.skill.map.DevelopeDataMapper;
-import com.xinglefly.network.Network;
+import com.xinglefly.entity.DeveloperInfo;
+import com.xinglefly.http.HttpMethods;
 import com.xinglefly.util.LogUtil;
-import com.xinglefly.util.ToastUtil;
-import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import rx.Subscriber;
 
 
 public class DeveloperFragment extends BaseFragment {
@@ -39,7 +30,7 @@ public class DeveloperFragment extends BaseFragment {
     @BindView(R.id.listview) ListView listView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
 
-    private DevelopAdapter mAdapter = new DevelopAdapter(getActivity());
+    private DevelopAdapter mAdapter;
     private int page = 0;
 
     @Nullable
@@ -48,6 +39,7 @@ public class DeveloperFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_developer, container, false);
         ButterKnife.bind(this, view);
 
+        mAdapter = new DevelopAdapter(getActivity());
         listView.setAdapter(mAdapter);
 
         swipeRefreshLayout.setColorSchemeColors(Color.BLUE,Color.RED,Color.GREEN,Color.YELLOW);
@@ -72,16 +64,18 @@ public class DeveloperFragment extends BaseFragment {
 
     private void loadPage(int page) {
         swipeRefreshLayout.setRefreshing(true);
-        subscription = Network.getDeveloperApi()
-                .load()
+        /*subscription = Network.getDeveloperApi()
+                .getToArtciles()
                 .map(DevelopeDataMapper.getInstance())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
+                .subscribe(observer);*/
+        HttpMethods.getInstance().getDevelopInfo(subscribe);
     }
 
 
-    Observer<DeveloperInfo> observer = new Observer<DeveloperInfo>() {
+
+    Subscriber<DeveloperInfo> subscribe = new Subscriber<DeveloperInfo>() {
         @Override
         public void onCompleted() {
         }
@@ -90,14 +84,12 @@ public class DeveloperFragment extends BaseFragment {
         public void onError(Throwable e) {
             swipeRefreshLayout.setRefreshing(false);
             LogUtil.e("err: %s",e.toString());
-            ToastUtil.showToast("%s",e.toString());
         }
 
         @Override
         public void onNext(DeveloperInfo info) {
             swipeRefreshLayout.setRefreshing(false);
-            LogUtil.d("info: %s",info.toString());
-//            mAdapter.addData(developerItems);
+            mAdapter.addData(info.getArticles());
         }
     };
 

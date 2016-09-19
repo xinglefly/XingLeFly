@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
-import com.xinglefly.model.DeveloperItem;
+import com.xinglefly.entity.Article;
 import com.xinglefly.util.ViewHolder;
 
 import java.util.ArrayList;
@@ -20,13 +20,13 @@ import java.util.List;
 public class DevelopAdapter extends BaseAdapter {
 
     private Context context;
-    private List<DeveloperItem> data;
+    private List<Article> data;
 
     public DevelopAdapter(Context context) {
         this.context = context;
     }
 
-    public void addData(List<DeveloperItem> list) {
+    public void addData(List<Article> list) {
         if (data == null)
             data = new ArrayList();
         data.addAll(list);
@@ -53,11 +53,11 @@ public class DevelopAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = LayoutInflater.from(context).inflate(R.layout.develop_item, parent, false);
 
-        ImageView imgRight = ViewHolder.get(convertView, R.id.pic_imageview);
+        ImageView imgRight = ViewHolder.get(convertView, R.id.img_pic);
         TextView tvTitle = ViewHolder.get(convertView, R.id.tv_title);
         TextView tvTime = ViewHolder.get(convertView, R.id.tv_date);
 
-        DeveloperItem model = data.get(position);
+        Article model = data.get(position);
 
         if (!TextUtils.isEmpty(model.getSubject().getImage()))
             Picasso.with(context).load(model.getSubject().getImage()).into(imgRight);

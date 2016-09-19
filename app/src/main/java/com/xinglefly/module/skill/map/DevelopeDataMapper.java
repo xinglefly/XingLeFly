@@ -1,10 +1,7 @@
 package com.xinglefly.module.skill.map;
 
-import com.xinglefly.model.DeveloperInfo;
-import com.xinglefly.model.DeveloperItem;
-import com.xinglefly.model.ResultData;
-
-import java.util.List;
+import com.xinglefly.entity.DeveloperInfo;
+import com.xinglefly.entity.ResultData;
 
 import rx.functions.Func1;
 

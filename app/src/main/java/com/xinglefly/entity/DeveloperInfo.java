@@ -1,9 +1,8 @@
-package com.xinglefly.model;
+package com.xinglefly.entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
-public class DeveloperInfo implements Serializable {
+public class DeveloperInfo {
 
     /*{
         "errcode":0, "msg":"ok", "ret":0, "data":{
@@ -28,14 +27,14 @@ public class DeveloperInfo implements Serializable {
         }
     }}*/
 
+
     //Data
     private String date;
     private String pre_date;
     private String next_date;
     private boolean is_today;
     private String share_url;
-
-    private ArrayList<DeveloperItem> articles;
+    private List<Article> article;
 
     public String getDate() {
         return date;
@@ -77,12 +76,12 @@ public class DeveloperInfo implements Serializable {
         this.share_url = share_url;
     }
 
-    public ArrayList<DeveloperItem> getArticles() {
-        return articles;
+    public List<Article> getArticles() {
+        return article;
     }
 
-    public void setArticles(ArrayList<DeveloperItem> articles) {
-        this.articles = articles;
+    public void setArticles(List<Article> article) {
+        this.article = article;
     }
 
     @Override
@@ -93,7 +92,7 @@ public class DeveloperInfo implements Serializable {
                 ", next_date='" + next_date + '\'' +
                 ", is_today=" + is_today +
                 ", share_url='" + share_url + '\'' +
-                ", articles=" + articles +
+                ", article=" + article +
                 '}';
     }
 }

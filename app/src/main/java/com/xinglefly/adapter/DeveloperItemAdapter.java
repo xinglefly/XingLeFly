@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
-import com.xinglefly.model.DeveloperItem;
+import com.xinglefly.entity.Article;
 import com.xinglefly.util.LogUtil;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 @Deprecated
 public class DeveloperItemAdapter extends RecyclerView.Adapter {
 
-    private List<DeveloperItem> items;
+    private List<Article> items;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,13 +30,13 @@ public class DeveloperItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
-        DeveloperItem item = items.get(position);
+        Article item = items.get(position);
         LogUtil.Object(item);
 //        viewHolder.tvTitle.setText(item.getDescription());
 //        Picasso.with(holder.itemView.getContext()).load(item.getImage()).into(viewHolder.imgIcon);
     }
 
-    public void setData(List<DeveloperItem> items) {
+    public void setData(List<Article> items) {
         this.items = items;
         notifyDataSetChanged();
     }

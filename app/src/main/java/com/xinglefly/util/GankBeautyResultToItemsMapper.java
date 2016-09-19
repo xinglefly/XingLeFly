@@ -1,8 +1,8 @@
 package com.xinglefly.util;
 
-import com.xinglefly.model.GankBeauty;
-import com.xinglefly.model.GankBeautyResult;
-import com.xinglefly.model.PictureItem;
+import com.xinglefly.entity.GankBeauty;
+import com.xinglefly.entity.GankBeautyResult;
+import com.xinglefly.entity.PictureItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
