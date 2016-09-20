@@ -1,0 +1,49 @@
+<com.xinglefly.module.view.TopTitleView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_title"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#f2f2f2">
+
+    <ImageView
+        android:id="@+id/backImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|left"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:src="@drawable/selector_g_back" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="10dip"
+        android:textColor="@color/font_3"
+        android:textSize="@dimen/text_33" />
+
+    <ImageView
+        android:id="@+id/sub_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="@dimen/dp_11" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@color/font_1" />
+
+</com.xinglefly.module.view.TopTitleView>

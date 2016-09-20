@@ -76,18 +76,22 @@ public class MainActivity extends BaseActivity {
     public void showNetErr(NetWorkEvent event){
         if (event.isNetwork()){
             netErr.setVisibility(View.GONE);
-            PreferenceUtil.getInstance(mContext).setIsNetWork(false);
+            PreferenceUtil.getInstance(baseContext).setIsNetWork(false);
         } else{
             netErr.setVisibility(View.VISIBLE);
-            PreferenceUtil.getInstance(mContext).setIsNetWork(true);
+            PreferenceUtil.getInstance(baseContext).setIsNetWork(true);
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (PreferenceUtil.getInstance(mContext).isNetwork()) netErr.setVisibility(View.VISIBLE);
+        if (PreferenceUtil.getInstance(baseContext).isNetwork()) netErr.setVisibility(View.VISIBLE);
         else netErr.setVisibility(View.GONE);
     }
 
+    @Override
+    protected boolean showTitleBar() {
+        return false;
+    }
 }

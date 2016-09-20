@@ -128,9 +128,9 @@ public class SubPageDetailActivity extends BaseActivity{
 //        UMShareAPI.get(baseContext).onActivityResult(requestCode, resultCode, data);
     }
 
-    /*@Override
+    @Override
     protected boolean showTitleBar() {
         return true;
-    }*/
+    }
 
 }
