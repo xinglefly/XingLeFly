@@ -17,13 +17,13 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XingLeApp.RegisterEventBus(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        XingLeApp.unRegisterEventBus(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Subscribe

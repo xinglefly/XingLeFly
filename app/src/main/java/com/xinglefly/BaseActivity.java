@@ -9,6 +9,8 @@ import com.xinglefly.event.NetWorkEvent;
 import com.xinglefly.module.view.TopTitleView;
 import com.xinglefly.util.ActivityController;
 import com.xinglefly.util.ActivityUtil;
+
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 
@@ -21,8 +23,8 @@ public  class  BaseActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XingLeApp.RegisterEventBus(this);
         ActivityController.add(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -65,8 +67,8 @@ public  class  BaseActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        XingLeApp.unRegisterEventBus(this);
         ActivityController.remove(this);
+        EventBus.getDefault().unregister(this);
     }
 
 

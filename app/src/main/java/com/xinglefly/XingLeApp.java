@@ -19,13 +19,6 @@ public class XingLeApp extends Application{
         return mInstance;
     }
 
-    public static void RegisterEventBus(Object subscriber){
-        EventBus.getDefault().register(subscriber);
-    }
-
-    public static void unRegisterEventBus(Object subscriber){
-        EventBus.getDefault().unregister(subscriber);
-    }
 
     public static void postEvent(Object event){
         EventBus.getDefault().post(event);

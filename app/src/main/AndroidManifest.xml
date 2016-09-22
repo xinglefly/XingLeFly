@@ -3,7 +3,7 @@
     package="com.xinglefly">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".XingLeApp"
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".module.widget.SubPageDetailActivity"
-            android:label="webview"
-            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".module.widget.SubPageDetailActivity"
+            android:label="webview" />
 
         <receiver android:name=".util.NetworkReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
     </application>
