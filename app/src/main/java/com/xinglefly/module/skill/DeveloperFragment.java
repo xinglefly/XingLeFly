@@ -35,10 +35,9 @@ public class DeveloperFragment extends BaseFragment {
     @BindView(R.id.btn_next) AppCompatButton btnNext;
     @BindView(R.id.listview) ListView listView;
     @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
-
-    private DevelopAdapter mAdapter;
     private DevelopPresenter presenter;
-    private int page = 0;
+    private DevelopAdapter mAdapter;
+    int page = 0;
 
     @Nullable
     @Override
