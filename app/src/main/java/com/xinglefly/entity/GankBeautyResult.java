@@ -1,4 +1,4 @@
-package com.xinglefly.model;
+package com.xinglefly.entity;
 
 import com.google.gson.annotations.SerializedName;
 

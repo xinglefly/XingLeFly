@@ -7,7 +7,7 @@ import com.orhanobut.logger.Logger;
 public class LogUtil {
 
     private static boolean isEnabled;
-    private static final String LOG_TAG = "yd_lib";
+    private static final String LOG_TAG = "xinglefly";
 
     public static void init(boolean isEnabled) {
         LogUtil.isEnabled = isEnabled;
@@ -20,38 +20,31 @@ public class LogUtil {
     }
 
     public static void e(String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.e(message, args);
+        if(LogUtil.isEnabled) Logger.e(message, args);
     }
 
     public static void e(Throwable throwable, String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.e(throwable, message, args);
+        if(LogUtil.isEnabled) Logger.e(throwable, message, args);
     }
 
     public static void i(String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.i(message, args);
+        if(LogUtil.isEnabled) Logger.i(message, args);
     }
 
     public static void v(String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.v(message, args);
+        if(LogUtil.isEnabled) Logger.v(message, args);
     }
 
     public static void w(String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.w(message, args);
+        if(LogUtil.isEnabled) Logger.w(message, args);
     }
 
     public static void wtf(String message, Object... args) {
-        if(LogUtil.isEnabled)
-            Logger.wtf(message, args);
+        if(LogUtil.isEnabled) Logger.wtf(message, args);
     }
 
     public static void json(String json) {
-        if(LogUtil.isEnabled)
-            Logger.json(json);
+        if(LogUtil.isEnabled) Logger.json(json);
     }
 
     public static void xml(String xml) {
@@ -60,8 +53,7 @@ public class LogUtil {
     }
 
     public static void Object(Object object) {
-        if(!LogUtil.isEnabled)
-            return;
+        if(!LogUtil.isEnabled) return;
 
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(object);

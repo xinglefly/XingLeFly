@@ -1,8 +1,8 @@
-package com.xinglefly.util;
+package com.xinglefly.module.picture;
 
-import com.xinglefly.model.GankBeauty;
-import com.xinglefly.model.GankBeautyResult;
-import com.xinglefly.model.MapItem;
+import com.xinglefly.entity.GankBeauty;
+import com.xinglefly.entity.GankBeautyResult;
+import com.xinglefly.entity.PictureItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import rx.functions.Func1;
 
-public class GankBeautyResultToItemsMapper implements Func1<GankBeautyResult, List<MapItem>> {
+public class GankBeautyResultToItemsMapper implements Func1<GankBeautyResult, List<PictureItem>> {
 
     private static GankBeautyResultToItemsMapper INSTANCE = new GankBeautyResultToItemsMapper();
 
@@ -23,14 +23,14 @@ public class GankBeautyResultToItemsMapper implements Func1<GankBeautyResult, Li
     }
 
     @Override
-    public List<MapItem> call(GankBeautyResult gankBeautyResult) {
+    public List<PictureItem> call(GankBeautyResult gankBeautyResult) {
         List<GankBeauty> gankBeauties = gankBeautyResult.beauties;
-        List<MapItem> items = new ArrayList<MapItem>(gankBeauties.size());
+        List<PictureItem> items = new ArrayList(gankBeauties.size());
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
 
         for (GankBeauty gankBeauty : gankBeauties){
-            MapItem item = new MapItem();
+            PictureItem item = new PictureItem();
             try {
                 Date date = inputFormat.parse(gankBeauty.createdAt);
                 item.description = outputFormat.format(date);
