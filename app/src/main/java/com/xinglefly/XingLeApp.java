@@ -1,8 +1,8 @@
 package com.xinglefly;
 
 import android.app.Application;
-
 import com.xinglefly.util.LogUtil;
+import org.greenrobot.eventbus.EventBus;
 
 public class XingLeApp extends Application{
 
@@ -17,5 +17,10 @@ public class XingLeApp extends Application{
 
     public static XingLeApp getInstance(){
         return mInstance;
+    }
+
+
+    public static void postEvent(Object event){
+        EventBus.getDefault().post(event);
     }
 }

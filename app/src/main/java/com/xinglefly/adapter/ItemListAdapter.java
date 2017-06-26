@@ -6,21 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
 import com.xinglefly.R;
-import com.xinglefly.model.MapItem;
+import com.xinglefly.entity.PictureItem;
+import com.xinglefly.util.LogUtil;
+
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ItemListAdapter extends RecyclerView.Adapter {
 
-    private List<MapItem> images;
-
-    public void setImages(List<MapItem> images) {
-        this.images = images;
-        notifyDataSetChanged();
-    }
+    private List<PictureItem> images;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,9 +29,14 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BindViewHolder viewHolder = (BindViewHolder) holder;
-        MapItem mapItem = images.get(position);
+        PictureItem mapItem = images.get(position);
         viewHolder.descriptionTv.setText(mapItem.description);
         Picasso.with(holder.itemView.getContext()).load(mapItem.imageUrl).into(viewHolder.imageIv);
+    }
+
+    public void setImages(List<PictureItem> images) {
+        this.images = images;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -44,6 +47,7 @@ public class ItemListAdapter extends RecyclerView.Adapter {
     static class BindViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.imageIv) ImageView imageIv;
         @BindView(R.id.descriptionTv) TextView descriptionTv;
+
         public BindViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

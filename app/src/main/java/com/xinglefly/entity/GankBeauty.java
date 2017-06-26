@@ -1,4 +1,4 @@
-package com.xinglefly.model;
+package com.xinglefly.entity;
 
 public class GankBeauty {
     public String createdAt;
