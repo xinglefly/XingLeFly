@@ -23,6 +23,7 @@ public class DevelopPresenter {
                 .getToArtciles()
                 .map(new DevelopResultFunc<DeveloperInfo>());
         SubscribeProxy.toSubscribe(observable,subscriber);
+
     }
 
 }

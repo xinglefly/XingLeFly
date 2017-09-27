@@ -109,6 +109,7 @@ public class DeveloperFragment extends BaseFragment {
         public void onNext(DeveloperInfo info) {
             swipeRefreshLayout.setRefreshing(false);
             mAdapter.addData(info.getArticles());
+            LogUtil.e("info: %s",info.toString());
         }
     };
 
